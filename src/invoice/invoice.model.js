@@ -5,7 +5,7 @@ const invoiceSchema = Schema(
         user: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User',
-            required: [true, 'Invoice is required']
+            required: [true, 'User is required']
         },
         product: {
             type: mongoose.Schema.Types.ObjectId,
