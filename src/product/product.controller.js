@@ -162,7 +162,23 @@ export const updateProduct = async(req, res)=>{
 
 export const getOutProducts = async(req, res)=>{
     try {
-        const products = await Product.find({ stock: { $lte: 0 } });
+        const products = await Product.find({ stock: { $lte: 0 } })
+        res.json(products)
+    }catch (err) {
+        console.error(err)
+        return res.status(500).send(
+            {
+                success: false,
+                message: 'General error when retrieving categories',
+                err
+            }
+        )
+    }
+}
+
+export const getBestProducts = async(req, res)=>{
+    try {
+        const products = await Product.find().sort({ sold: -1 }).limit(5)
         res.json(products)
     }catch (err) {
         console.error(err)

@@ -2,6 +2,7 @@ import { Router } from "express"
 import { 
     addProduct, 
     getAllProducts, 
+    getBestProducts, 
     getOutProducts, 
     getProductById,
     updateProduct
@@ -58,6 +59,15 @@ api.get(
         isAdmin
     ],
     getOutProducts
+)
+
+api.get(
+    '/sold/top',
+    [
+        validateJwt,
+        isAdmin
+    ],
+    getBestProducts
 )
 
 export default api
