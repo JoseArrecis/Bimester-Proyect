@@ -1,0 +1,824 @@
+{
+	"info": {
+		"_postman_id": "25dc9cd2-a540-4ada-93c9-54de2f739cae",
+		"name": "Bimester Proyect",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37951912"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "getAllUsers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3626/v1/user",
+							"host": [
+								"localhost"
+							],
+							"port": "3626",
+							"path": [
+								"v1",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = JSON.parse(responseBody);\r",
+									"postman.setGlobalVariable(\"token\", data.token)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3626/v1/user/67b0d4603282c0d3e07adc54",
+							"host": [
+								"localhost"
+							],
+							"port": "3626",
+							"path": [
+								"v1",
+								"user",
+								"67b0d4603282c0d3e07adc54"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateUser",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2IwZDQ2MDMyODJjMGQzZTA3YWRjNTQiLCJuYW1lIjoiRmF0aW1hIiwidXNlcm5hbWUiOiJ0aW1hIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzM5NjQ0NzI4LCJleHAiOjE3Mzk2NTU1Mjh9.Vsh7EI5eErApgz7oynxIpWN0_O9xsHX2jjM9eKMXQCg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Keila",
+									"type": "text"
+								},
+								{
+									"key": "surname",
+									"value": "Rebeca",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "k.rebeca",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "krebeca@Kinal.org.gt",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456Aa#",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "66616722",
+									"type": "text"
+								},
+								{
+									"key": "role",
+									"value": "ADMIN",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3626/v1/user/67b0d4603282c0d3e07adc54",
+							"host": [
+								"localhost"
+							],
+							"port": "3626",
+							"path": [
+								"v1",
+								"user",
+								"67b0d4603282c0d3e07adc54"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteUser",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3626/v1/user/67b0d4603282c0d3e07adc54",
+							"host": [
+								"localhost"
+							],
+							"port": "3626",
+							"path": [
+								"v1",
+								"user",
+								"67b0d4603282c0d3e07adc54"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updatePassword",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = JSON.parse(responseBody);\r",
+									"postman.setGlobalVariable(\"token\", data.token)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "currentPassword",
+									"value": "123456789Aa!",
+									"type": "text"
+								},
+								{
+									"key": "newPassword",
+									"value": "123456789Qq!",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3626/v1/user/password/67aeaeabbf9b78bec5466f8c",
+							"host": [
+								"localhost"
+							],
+							"port": "3626",
+							"path": [
+								"v1",
+								"user",
+								"password",
+								"67aeaeabbf9b78bec5466f8c"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "registerCategory",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Informatica",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Area solo de informática",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3626/v1/category",
+							"host": [
+								"localhost"
+							],
+							"port": "3626",
+							"path": [
+								"v1",
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllCategory",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3626/v1/category",
+							"host": [
+								"localhost"
+							],
+							"port": "3626",
+							"path": [
+								"v1",
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateCategory",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Cocina",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Pasillo 20",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3626/v1/category/67afbb0d4d30a469192c3941",
+							"host": [
+								"localhost"
+							],
+							"port": "3626",
+							"path": [
+								"v1",
+								"category",
+								"67afbb0d4d30a469192c3941"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteCategory",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3626/v1/category/67afbb0d4d30a469192c3941",
+							"host": [
+								"localhost"
+							],
+							"port": "3626",
+							"path": [
+								"v1",
+								"category",
+								"67afbb0d4d30a469192c3941"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "register/login",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = JSON.parse(responseBody);\r",
+									"postman.setGlobalVariable(\"token\", data.token)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "userLoggin",
+									"value": "cabalo",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456789Qq!",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3626/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3626",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Daniel",
+									"type": "text"
+								},
+								{
+									"key": "surname",
+									"value": "Rivas",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "dani",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "drivas@Kinal.org.gt",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456789Qq!",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "85252525",
+									"type": "text"
+								},
+								{
+									"key": "role",
+									"value": "ADMIN",
+									"type": "text"
+								},
+								{
+									"key": "profilePicture",
+									"type": "file",
+									"src": "/C:/Users/André Arrecis/Documents/Jose Sexto/Diploma de 3ro. Basico.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3626/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3626",
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "registerProduct",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Protoboard",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Para conectar circiutos",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "120",
+									"type": "text"
+								},
+								{
+									"key": "stock",
+									"value": "10",
+									"type": "text"
+								},
+								{
+									"key": "sold",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "categoryId",
+									"value": "67c12c1c3d037a88e1063c37",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3626/v1/product/",
+							"host": [
+								"localhost"
+							],
+							"port": "3626",
+							"path": [
+								"v1",
+								"product",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllProduct",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3626/v1/product/",
+							"host": [
+								"localhost"
+							],
+							"port": "3626",
+							"path": [
+								"v1",
+								"product",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateProduct",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Vaso",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Para tomar bebidas",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "10",
+									"type": "text"
+								},
+								{
+									"key": "stock",
+									"value": "3",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3626/v1/product/67c139e14be35ed6e5eeff54",
+							"host": [
+								"localhost"
+							],
+							"port": "3626",
+							"path": [
+								"v1",
+								"product",
+								"67c139e14be35ed6e5eeff54"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteProduct",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3626/v1/product/67c148a9a0593987ec85f531",
+							"host": [
+								"localhost"
+							],
+							"port": "3626",
+							"path": [
+								"v1",
+								"product",
+								"67c148a9a0593987ec85f531"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getProduct",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3626/v1/product/67c148a9a0593987ec85f531",
+							"host": [
+								"localhost"
+							],
+							"port": "3626",
+							"path": [
+								"v1",
+								"product",
+								"67c148a9a0593987ec85f531"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getStock",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "localhost:3626/v1/product/stock/out",
+							"host": [
+								"localhost"
+							],
+							"port": "3626",
+							"path": [
+								"v1",
+								"product",
+								"stock",
+								"out"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getSelling",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3626/v1/product/sold/top",
+							"host": [
+								"localhost"
+							],
+							"port": "3626",
+							"path": [
+								"v1",
+								"product",
+								"sold",
+								"top"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

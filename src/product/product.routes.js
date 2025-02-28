@@ -79,5 +79,5 @@ api.delete(
     ],
     deleteProduct
 )
-
+    
 export default api
