@@ -1,6 +1,7 @@
 import { Router } from "express"
 import { 
     addProduct, 
+    deleteProduct, 
     getAllProducts, 
     getBestProducts, 
     getOutProducts, 
@@ -68,6 +69,15 @@ api.get(
         isAdmin
     ],
     getBestProducts
+)
+
+api.delete(
+    '/:id',
+    [
+        validateJwt,
+        isAdmin
+    ],
+    deleteProduct
 )
 
 export default api

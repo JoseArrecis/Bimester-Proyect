@@ -191,3 +191,37 @@ export const getBestProducts = async(req, res)=>{
         )
     }
 }
+
+export const deleteProduct = async(req, res)=>{
+    try {
+        const { id } = req.params
+
+        const product = await Product.findById(id)
+        if(!product){
+            return res.status(404).send(
+                {
+                    success: false,
+                    message: 'Product not found'
+                }
+            )
+        }
+
+        await product.deleteOne()
+        return res.send(
+            {
+                success: true,
+                message: 'Product deleted succesfully'
+            }
+        )
+
+    }catch (err) {
+        console.error(err)
+        return res.status(500).send(
+            {
+                success: false,
+                message: 'General error when retrieving categories',
+                err
+            }
+        )
+    }
+}
