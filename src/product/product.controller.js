@@ -85,3 +85,37 @@ export const getAllProducts = async(req, res)=>{
         )
     }
 }
+
+export const getProductById = async(req, res)=>{
+    try {
+        const { id } = req.params
+        const product = await Product.findById(id).populate('category', 'name')
+        
+        if(!product){
+            return res.status(404).send(
+               {
+                    success: false,
+                    message: 'Product not found'
+               } 
+            )
+        }
+
+        return res.send(
+            {
+                success: true,
+                product
+            }
+        )
+
+    }catch (err) {
+        console.error(err)
+        return res.status(500).send(
+            {
+                success: false,
+                message: 'General error when retrieving categories',
+                err,
+            }
+        )
+    }
+}
+

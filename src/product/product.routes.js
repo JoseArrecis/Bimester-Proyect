@@ -1,7 +1,8 @@
 import { Router } from "express"
 import { 
     addProduct, 
-    getAllProducts 
+    getAllProducts, 
+    getProductById
 } from "./product.controller.js"
 import { 
     isAdmin, 
@@ -28,6 +29,15 @@ api.get(
         isAdmin
     ],
     getAllProducts
+)
+
+api.get(
+    '/:id',
+    [
+        validateJwt,
+        isAdmin
+    ],
+    getProductById
 )
 
 export default api
