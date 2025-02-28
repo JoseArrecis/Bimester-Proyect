@@ -44,35 +44,6 @@ export const loginValidator = [
     validateErrorWithoutImg
 ]
 
-//Category
-export const saveCategoryValidator = [
-    body('name', 'Category name cannot be empty')
-        .notEmpty()
-        .isLength({ max: 50 })
-        .withMessage('Category name cannot exceed 50 characters'),
-    body('description', 'Category description cannot be empty')
-        .notEmpty()
-        .isLength({ max: 255 })
-        .withMessage('Description cannot exceed 255 characters'),
-];
-
-//Product
-export const saveProductValidator = [
-    body('name', 'Product name cannot be empty')
-        .notEmpty()
-        .isLength({ max: 50 })
-        .withMessage('Product name cannot exceed 50 characters'),
-    body('description', 'Product description cannot be empty')
-        .notEmpty()
-        .isLength({ max: 100 })
-        .withMessage('Description cannot exceed 100 characters'),
-    body('price', 'Product price cannot be empty')
-        .notEmpty(),
-    body('stock')
-        .notEmpty().withMessage('Stock cannot be empty')
-        .isInt({ min: 0 }).withMessage('Stock must be a non-negative integer'),
-]
-
 //Invoice
 export const saveInvoiceValidator = [
     body('quantity', 'Quantity cannot be empty')
@@ -82,3 +53,4 @@ export const saveInvoiceValidator = [
     body('data', 'Date cannot be empty')
         .notEmpty().withMessage('Date cannot be empty')
 ]
+

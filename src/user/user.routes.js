@@ -7,37 +7,56 @@ import {
     updateUser
 } from "./user.controller.js"
 import { validateJwt } from "../../middlewares/validate.jwt.js"
+import { 
+    updatePasswordValidator, 
+    updateUserValidator, 
+    userIdValidator 
+} from "../../helpers/validator.user.js"
 
 const api = Router()
 
 //Rutas privadas
 api.get(
     '/',
-    [validateJwt],
+    [
+        validateJwt,
+
+    ],
     getAll
 )
 
 api.get(
     '/:id',
-    [validateJwt],
+    [
+        validateJwt,
+        userIdValidator
+    ],
     get
 )
 
 api.put(
     '/:id',
-    [validateJwt],
+    [
+        validateJwt,
+        updateUserValidator
+    ],
     updateUser
 )
 
 api.put(
     "/password/:id", 
-    [validateJwt], 
+    [
+        validateJwt,
+        updatePasswordValidator
+    ], 
     updatePassword
 )
 
 api.delete(
     '/:id',
-    [validateJwt],
+    [
+        validateJwt
+    ],
     deleteOne
 )
 

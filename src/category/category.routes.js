@@ -5,8 +5,8 @@ import {
     getAllCategories, 
     update
 } from "./category.controller.js"
-import { saveCategoryValidator } from "../../helpers/validators.js"
 import { isAdmin, validateJwt } from "../../middlewares/validate.jwt.js"
+import { saveCategoryValidator } from "../../helpers/validator.category.js"
 
 const api = Router()
 

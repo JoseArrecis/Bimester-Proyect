@@ -1,4 +1,6 @@
-
+import Cart from './cart.model.js'
+import Product from '../product/product.model.js'
+import User from '../user/user.model.js'
 
 export const addProductToCart = async(req, res)=>{
     try {
@@ -33,7 +35,22 @@ export const addProductToCart = async(req, res)=>{
             )
         }
 
-        
+        const cart = new Cart(
+            {
+                user: userId,
+                product: productId,
+                quantity
+            }
+        )
+
+        await cart.save()
+
+        return res.status(201).send(
+            {
+                success: true,
+                message: 'Product created successfully' 
+            }
+        )
 
     }catch (err) {
         console.error(err)

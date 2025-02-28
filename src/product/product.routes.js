@@ -12,7 +12,10 @@ import {
     isAdmin, 
     validateJwt 
 } from "../../middlewares/validate.jwt.js"
-import { saveProductValidator } from "../../helpers/validators.js"
+import { 
+    productIdValidator, 
+    saveProductValidator 
+} from "../../helpers/validator.product.js"
 
 const api = Router()
 
@@ -39,6 +42,7 @@ api.get(
     '/:id',
     [
         validateJwt,
+        productIdValidator,
         isAdmin
     ],
     getProductById
@@ -48,6 +52,7 @@ api.put(
     '/:id',
     [
         validateJwt,
+        productIdValidator,
         isAdmin
     ],
     updateProduct
@@ -75,6 +80,7 @@ api.delete(
     '/:id',
     [
         validateJwt,
+        productIdValidator,
         isAdmin
     ],
     deleteProduct
