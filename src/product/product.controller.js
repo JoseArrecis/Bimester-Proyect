@@ -119,3 +119,43 @@ export const getProductById = async(req, res)=>{
     }
 }
 
+export const updateProduct = async(req, res)=>{
+    try {
+        const { id } = req.params
+        const { name, description, price, stock, sold, categoryId } = req.body
+
+        const product = await Product.findById(id)
+        if(!product){
+            return res.status(404).send(
+                {
+                    success: false,
+                    message: 'Product not found'
+                }
+            )
+        }
+
+        const updateProduct = await Product.findByIdAndUpdate(
+            id,
+            { name, description, price, stock, sold, categoryId },
+            { new: true, runValidators: true } 
+        )
+
+        return res.send(
+            {
+                success: true,
+                message: 'Product updated succesfully',
+                product: updateProduct
+            }
+        )
+
+    }catch (err) {
+        console.error(err)
+        return res.status(500).send(
+            {
+                success: false,
+                message: 'General error when retrieving categories',
+                err,
+            }
+        )
+    }
+}
