@@ -55,3 +55,28 @@ export const saveCategoryValidator = [
         .isLength({ max: 255 })
         .withMessage('Description cannot exceed 255 characters'),
 ];
+
+//Product
+export const saveProductValidator = [
+    body('name', 'Product name cannot be empty')
+        .notEmpty()
+        .isLength({ max: 50 })
+        .withMessage('Product name cannot exceed 50 characters'),
+    body('description', 'Product description cannot be empty')
+        .notEmpty()
+        .isLength({ max: 100 })
+        .withMessage('Description cannot exceed 100 characters'),
+    body('price', 'Product price cannot be empty')
+        .notEmpty(),
+    body('stock')
+        .notEmpty().withMessage('Stock cannot be empty')
+        .isInt({ min: 0 }).withMessage('Stock must be a non-negative integer'),
+    body('category')
+        .exists({ checkFalsy: true }).withMessage('Category is required')
+        .custom((value) => {
+            if (!mongoose.Types.ObjectId.isValid(value)) {
+                throw new Error('Invalid category ID');
+            }
+            return true;
+        }),
+]

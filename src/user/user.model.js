@@ -1,5 +1,3 @@
-//Modelo de usuario
-
 import mongoose, { Schema, model } from "mongoose"
 
 const userSchema = Schema(
