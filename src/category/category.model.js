@@ -15,7 +15,8 @@ const categorySchema = Schema(
             type: Boolean,
             default: true
         }
-    }
+    },
+    { timesStamps: true }
 )
 
 export default model('Category', categorySchema)

@@ -71,12 +71,14 @@ export const saveProductValidator = [
     body('stock')
         .notEmpty().withMessage('Stock cannot be empty')
         .isInt({ min: 0 }).withMessage('Stock must be a non-negative integer'),
-    body('category')
-        .exists({ checkFalsy: true }).withMessage('Category is required')
-        .custom((value) => {
-            if (!mongoose.Types.ObjectId.isValid(value)) {
-                throw new Error('Invalid category ID');
-            }
-            return true;
-        }),
+]
+
+//Invoice
+export const saveInvoiceValidator = [
+    body('quantity', 'Quantity cannot be empty')
+        .notEmpty().withMessage('Quantity cannot be empty'),
+    body('totalAmount', 'Total amount cannot be empty')
+        .notEmpty().withMessage('Total amount cannot be empty'),
+    body('data', 'Date cannot be empty')
+        .notEmpty().withMessage('Date cannot be empty')
 ]

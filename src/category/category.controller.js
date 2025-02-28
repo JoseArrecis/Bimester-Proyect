@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
-import Category from './category.model.js'
 import { validationResult } from 'express-validator'
+import Category from './category.model.js'
+import mongoose from 'mongoose';
 
 export const addCategory = async (req, res) => {
     const errors = validationResult(req);
@@ -35,13 +35,15 @@ export const addCategory = async (req, res) => {
             message: 'Category created successfully',
             category,
         })
-    } catch (err) {
+    }catch (err) {
         console.error(err);
-        return res.status(500).send({
-            success: false,
-            message: 'General error when adding category',
-            err,
-        })
+        return res.status(500).send(
+            { 
+                success: false, 
+                message: 'General error', 
+                err 
+            }
+        )
     }
 }
 
@@ -62,13 +64,15 @@ export const getAllCategories = async (req, res) => {
             total: categories.length,
             categories
         })
-    } catch (err) {
+    }catch (err) {
         console.error(err);
-        return res.status(500).send({
-            success: false,
-            message: 'General error when retrieving categories',
-            err,
-        })
+        return res.status(500).send(
+            { 
+                success: false, 
+                message: 'General error', 
+                err 
+            }
+        )
     }
 }
 
