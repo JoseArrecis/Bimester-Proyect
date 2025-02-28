@@ -2,6 +2,7 @@ import { Router } from "express"
 import { 
     addProduct, 
     getAllProducts, 
+    getOutProducts, 
     getProductById,
     updateProduct
 } from "./product.controller.js"
@@ -48,6 +49,15 @@ api.put(
         isAdmin
     ],
     updateProduct
+)
+
+api.get(
+    '/stock/out',
+    [
+        validateJwt,
+        isAdmin
+    ],
+    getOutProducts
 )
 
 export default api
