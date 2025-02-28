@@ -1,12 +1,12 @@
 import Invoice from '../invoice/invoice.model.js'
-import User from '../user/user.controller.js'
-import Product from '../product/product.controller.js'
+import User from '../user/user.model.js'
+import Product from '../product/product.model.js'
 
 export const addInvoice = async(req, res)=>{
     try {
-        const { name, userId, productId, totalAmount, date } = req.body
+        const { userId, productId, quantity, totalAmount, date } = req.body
 
-        if (!name || !userId || !productId || !totalAmount || !date){
+        if (!userId || !productId || !quantity || !totalAmount || !date){
             return res.status(400).send(
                 {
                     success: false,
@@ -25,22 +25,21 @@ export const addInvoice = async(req, res)=>{
             )
         }
 
-        const existingProduct = await Product.findOne({name})
-        if(existingProduct){
+        const existingProduct = await Product.findById(productId)
+        if(!existingProduct){
             return res.status(400).send(
                 {
                     success: false,
-                    message: 'Product already exists'
+                    message: 'Product not found'
                 }
             )
         }
         
-        
         const invoice = new Invoice (
             {
-                name,
                 user: userId,
                 product: productId,
+                quantity,
                 totalAmount,
                 date
             }
@@ -65,3 +64,4 @@ export const addInvoice = async(req, res)=>{
         )
     }
 }
+

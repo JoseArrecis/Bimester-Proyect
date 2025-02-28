@@ -1,8 +1,8 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { model, Schema } from "mongoose"
 
 const invoiceSchema = Schema(
     {
-        name: {
+        user: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User',
             required: [true, 'Invoice is required']
@@ -16,7 +16,7 @@ const invoiceSchema = Schema(
             type: Number,
             required: [true, 'Quantity is required']
         },
-        totalAmout: {
+        totalAmount: {
             type: Number,
             required: [true, 'Total amount is required']
         },
@@ -26,3 +26,5 @@ const invoiceSchema = Schema(
         }
     }
 )
+
+export default model('Invoice', invoiceSchema)
