@@ -7,23 +7,7 @@ const invoiceSchema = Schema(
             ref: 'User',
             required: [true, 'User is required']
         },
-        product: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Product',
-            required: [true, 'Product is required']
-        },
-        quantity: {
-            type: Number,
-            required: [true, 'Quantity is required']
-        },
-        totalAmount: {
-            type: Number,
-            required: [true, 'Total amount is required']
-        },
-        date: {
-            type: Date,
-            required: [true, 'Date is required']
-        }
+        
     }
 )
 

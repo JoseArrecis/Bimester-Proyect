@@ -44,13 +44,4 @@ export const loginValidator = [
     validateErrorWithoutImg
 ]
 
-//Invoice
-export const saveInvoiceValidator = [
-    body('quantity', 'Quantity cannot be empty')
-        .notEmpty().withMessage('Quantity cannot be empty'),
-    body('totalAmount', 'Total amount cannot be empty')
-        .notEmpty().withMessage('Total amount cannot be empty'),
-    body('data', 'Date cannot be empty')
-        .notEmpty().withMessage('Date cannot be empty')
-]
 

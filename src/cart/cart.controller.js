@@ -235,6 +235,7 @@ export const clearCart = async (req, res) => {
                 message: 'Cart cleared successfully',
                 cart
             }
+            
         )
     } catch (err) {
         console.error(err);
