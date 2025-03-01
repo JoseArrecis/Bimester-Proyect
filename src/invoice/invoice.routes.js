@@ -1,6 +1,7 @@
 import { Router } from "express"
 import { 
     addInvoice, 
+    deleteInvoice, 
     getInvoiceByUser,
     getinvoiceDetails,
     updateInvoice
@@ -43,6 +44,15 @@ api.put(
         isAdmin
     ],
     updateInvoice
+)
+
+api.delete(
+    '/:invoiceId',
+    [
+        validateJwt,
+        isAdmin
+    ],
+    deleteInvoice
 )
 
 export default api
