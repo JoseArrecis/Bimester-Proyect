@@ -157,3 +157,62 @@ export const updateCartItem = async(req, res)=>{
         )
     }
 }
+
+export const deleteCartItem = async (req, res) => {
+    try {
+        const { cartId, itemId } = req.params
+
+        if (!mongoose.Types.ObjectId.isValid(cartId) || !mongoose.Types.ObjectId.isValid(itemId)) {
+            return res.status(400).send(
+                {
+                    success: false,
+                    message: "Invalid cart ID or item ID"
+                }
+            )
+        }
+
+        const cart = await Cart.findById(cartId)
+        if (!cart) {
+            return res.status(404).send(
+                {
+                    success: false,
+                    message: 'Cart not found'
+                }
+            )
+        }
+
+        const itemIndex = cart.items.findIndex(item => item.product.toString() === itemId)
+        if (itemIndex === -1) {
+            return res.status(404).send(
+                {
+                    success: false,
+                    message: 'Item not found in cart'
+                }
+            )
+        }
+
+        cart.items.splice(itemIndex, 1)
+
+        cart.totalAmount = cart.items.reduce((total, item) => total + item.totalAmount, 0)
+
+        await cart.save()
+
+        return res.status(200).send(
+            {
+                success: true,
+                message: 'Product removed from cart',
+                cart
+            }
+        )
+
+    } catch (err) {
+        console.error(err);
+        return res.status(500).send(
+            {
+                success: false,
+                message: "General error",
+                err
+            }
+        )
+    }
+}
