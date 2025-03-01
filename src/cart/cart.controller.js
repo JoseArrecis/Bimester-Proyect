@@ -160,18 +160,19 @@ export const updateCartItem = async(req, res)=>{
 
 export const deleteCartItem = async (req, res) => {
     try {
-        const { cartId, itemId } = req.params
+        const { cartId } = req.params
 
-        if (!mongoose.Types.ObjectId.isValid(cartId) || !mongoose.Types.ObjectId.isValid(itemId)) {
+        if (!mongoose.Types.ObjectId.isValid(cartId)) {
             return res.status(400).send(
                 {
                     success: false,
-                    message: "Invalid cart ID or item ID"
+                    message: "Invalid cart ID"
                 }
             )
         }
 
-        const cart = await Cart.findById(cartId)
+        const cart = await Cart.findByIdAndDelete(cartId);
+        
         if (!cart) {
             return res.status(404).send(
                 {
@@ -181,30 +182,60 @@ export const deleteCartItem = async (req, res) => {
             )
         }
 
-        const itemIndex = cart.items.findIndex(item => item.product.toString() === itemId)
-        if (itemIndex === -1) {
-            return res.status(404).send(
+        return res.status(200).send(
+            {
+                success: true,
+                message: 'Cart deleted successfully',
+                cart
+            }
+        )
+    } catch (err) {
+        console.error(err);
+        return res.status(500).send(
+            {
+                success: false,
+                message: "General error",
+                err
+            }
+        )
+    }
+}
+
+export const clearCart = async (req, res) => {
+    try {
+        const { cartId } = req.params;
+
+        if (!mongoose.Types.ObjectId.isValid(cartId)) {
+            return res.status(400).json(
                 {
                     success: false,
-                    message: 'Item not found in cart'
+                    message: 'Invalid cart ID'
                 }
             )
         }
 
-        cart.items.splice(itemIndex, 1)
+        const cart = await Cart.findById(cartId);
+        if (!cart) {
+            return res.status(404).send(
+                {
+                    success: false,
+                    message: 'Cart not found'
+                }
+            )
+        }
 
-        cart.totalAmount = cart.items.reduce((total, item) => total + item.totalAmount, 0)
+        cart.items = [];
+        cart.totalAmount = 0
 
-        await cart.save()
+        await cart.save();
 
         return res.status(200).send(
             {
                 success: true,
-                message: 'Product removed from cart',
+                message: 'Cart cleared successfully',
                 cart
             }
         )
-
     } catch (err) {
         console.error(err);
         return res.status(500).send(

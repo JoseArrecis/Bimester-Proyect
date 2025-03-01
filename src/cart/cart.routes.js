@@ -1,6 +1,7 @@
 import { Router } from "express"
 import { 
     addToCart, 
+    clearCart, 
     deleteCartItem, 
     getCart, 
     updateCartItem
@@ -40,13 +41,22 @@ api.put(
 )
 
 api.delete(
-    '/:cartId/item/:itemId',
+    '/:cartId',
     [
         validateJwt,
         removeCartItemValidator,
         isAdmin
     ],
     deleteCartItem
+)
+
+api.delete(
+    '/clear/:cartId',
+    [
+        validateJwt,
+        isAdmin
+    ],
+    clearCart
 )
 
 export default api

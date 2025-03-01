@@ -37,10 +37,3 @@ export const removeCartItemValidator = [
         .custom(objetctIdValid),
     validateErrors
 ]
-
-export const clearCartValidator = [
-    body('userId', 'User ID cannot be empty')
-        .notEmpty()
-        .custom(objetctIdValid),
-    validateErrors
-]
