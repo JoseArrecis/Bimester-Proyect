@@ -84,3 +84,143 @@ export const addInvoice = async(req, res)=>{
         )
     }
 }
+
+export const getInvoiceByUser = async(req, res)=>{
+    try {
+        const { userId } = req.params
+        
+        if (!mongoose.Types.ObjectId.isValid(userId)) {
+            return res.status(400).send(
+                { 
+                    success: false, 
+                    message: "Invalid userId" 
+                }
+            )
+        }
+
+        const invoices = await Invoice.find({ user: userId })
+
+        if (!invoices.length) {
+            return res.status(404).send(
+                { 
+                    success: false,
+                    message: "No invoices found for this user" 
+                }
+            )
+        }
+
+        res.status(200).send(
+            { 
+                success: true, 
+                message: 'Invoice found correctly',
+                invoices 
+            }
+        )
+
+    }catch (err) {
+        console.error(err)
+        return res.status(500).send(
+            {
+                success: false,
+                message: "General error",
+                err
+            }
+        )
+    }
+}
+
+export const getinvoiceDetails = async(req, res)=>{
+    try {
+        const { invoiceId } = req.params
+
+        const invoice = await Invoice.findById(invoiceId).populate('items.product', 'name price description').populate('user', 'name surname username')
+
+        if (!invoice){
+            return res.status(404).send(
+                {
+                    success: false,
+                    message: 'Invoice not found'
+                }
+            )
+        }
+
+        return res.status(200).send(
+            {
+                success: true,
+                invoice
+            }
+        )
+
+    }catch (err) {
+        console.error(err)
+        return res.status(500).send(
+            {
+                success: false,
+                message: "General error",
+                err
+            }
+        )
+    }
+}
+
+export const updateInvoice = async(req, res)=>{
+    try {
+        const { invoiceId } = req.params
+        const { items, totalAmount } = req.body
+
+        const invoice = await Invoice.findById(invoiceId)
+
+        if(!invoice){
+            return res.status(404).send(
+                {
+                    success: false,
+                    message: 'Invoice not found'
+                }
+            )
+        }
+
+        for (let item of items){
+            const product = await Product.findById(item.product)
+
+            if(!product){
+                return res.status(404).send(
+                    {
+                        success: false,
+                        message: `Product with id ${item.product} not found`
+                    }
+                )
+            }
+
+            if (product.stock < item.quantity){
+                return res.status(400).send(
+                    {
+                        success: false,
+                        message: `Not enough stock for product ${product.name}`
+                    }
+                )
+            }
+        }
+
+        invoice.items = items
+        invoice.totalAmount = totalAmount
+        await invoice.save()
+
+        return res.status(200).send(
+            {
+                success: true, 
+                message: 'Invoice updated succesfully',
+                invoice
+            }
+        )
+
+    }catch (err) {
+        console.error(err)
+        return res.status(500).send(
+            {
+                success: false,
+                message: "General error",
+                err
+            }
+        )
+    }
+}
