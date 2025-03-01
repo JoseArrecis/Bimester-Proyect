@@ -1,31 +1,20 @@
-import { body, param } from "express-validator"
-import { validateErrors } from "./validate.error.js"
+import { body, param } from 'express-validator'
+import { validateErrors } from './validate.error.js'
 import { objetctIdValid } from "./db.validators.js"
 
-export const updateUserValidator = [
-    param('id', 'Invalid user ID')
+export const saveInvoiceValidator = [
+    body('userId', 'Invalid user ID')
         .notEmpty()
         .custom(objetctIdValid),
-    body('name').optional().isLength({ max: 50 }).withMessage('Name must be at most 50 characters long'),
-    body('surname').optional().isLength({ max: 50 }).withMessage('Surname must be at most 50 characters long'),
-    body('phone').optional().isMobilePhone().withMessage('Phone number must be valid'),
-    validateErrors 
-]
-
-export const updatePasswordValidator = [
-    param('id', 'Invalid user ID')
+    body('items')
+        .isArray({ min: 1 })
+        .withMessage('Items should be an array with at least one product'),
+    body('items.*.productId', 'Invalid product ID')
         .notEmpty()
-        .custom(objetctIdValid),  
-    body('password', 'Password must be at least 8 characters long')
+        .custom(objetctIdValid), 
+    body('items.*.quantity', 'Quantity must be a positive integer')
         .notEmpty()
-        .isLength({ min: 8 }),  
-    validateErrors 
+        .isInt({ min: 1 })
+        .withMessage('Quantity must be at least 1'),
+    validateErrors
 ]
-
-export const userIdValidator = [
-    param('id', 'Invalid user ID')
-        .notEmpty()
-        .custom(objetctIdValid),  
-    validateErrors  
-]
-
