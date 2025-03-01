@@ -79,8 +79,8 @@ export const getAllProducts = async(req, res)=>{
         return res.status(500).send(
             {
                 success: false,
-                message: 'General error when retrieving categories',
-                err,
+                message: "General error",
+                err
             }
         )
     }
@@ -112,8 +112,8 @@ export const getProductById = async(req, res)=>{
         return res.status(500).send(
             {
                 success: false,
-                message: 'General error when retrieving categories',
-                err,
+                message: "General error",
+                err
             }
         )
     }
@@ -153,8 +153,8 @@ export const updateProduct = async(req, res)=>{
         return res.status(500).send(
             {
                 success: false,
-                message: 'General error when retrieving categories',
-                err,
+                message: "General error",
+                err
             }
         )
     }
@@ -169,7 +169,7 @@ export const getOutProducts = async(req, res)=>{
         return res.status(500).send(
             {
                 success: false,
-                message: 'General error when retrieving categories',
+                message: "General error",
                 err
             }
         )
@@ -185,7 +185,7 @@ export const getBestProducts = async(req, res)=>{
         return res.status(500).send(
             {
                 success: false,
-                message: 'General error when retrieving categories',
+                message: "General error",
                 err
             }
         )
@@ -219,7 +219,7 @@ export const deleteProduct = async(req, res)=>{
         return res.status(500).send(
             {
                 success: false,
-                message: 'General error when retrieving categories',
+                message: "General error",
                 err
             }
         )

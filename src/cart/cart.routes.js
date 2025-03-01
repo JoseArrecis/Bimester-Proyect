@@ -1,7 +1,11 @@
 import { Router } from "express"
+import { 
+    addToCart, 
+    getCart, 
+    updateCartItem
+} from "./cart.controller.js"
 import { isAdmin, validateJwt } from "../../middlewares/validate.jwt.js"
-import { addToCartValidator } from "../../helpers/validator.cart.js"
-import { addToCart } from "./cart.controller.js"
+import { addToCartValidator, updateCartItemValidator } from "../../helpers/validator.cart.js"
 
 const api = Router()
 
@@ -13,6 +17,25 @@ api.post(
         isAdmin
     ],
     addToCart
+)
+
+api.get(
+    '/:userId',
+    [
+        validateJwt,
+        isAdmin
+    ],
+    getCart
+)
+
+api.put(
+    '/:id',
+    [
+        validateJwt,
+        updateCartItemValidator,
+        isAdmin
+    ],
+    updateCartItem
 )
 
 export default api
