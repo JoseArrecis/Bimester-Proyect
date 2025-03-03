@@ -24,12 +24,14 @@ export const addProduct = async(req, res)=>{
             )
         }
 
-        const existingCategory = await Category.findOne({ name });
+        const existingCategory = await Category.findOne({ name })
                 if (existingCategory) {
-                    return res.status(400).send({
+                    return res.status(400).send(
+                    {
                         success: false,
                         message: 'Category already exists',
-                    })
+                    }
+                )
         }
 
         const product = new Product(

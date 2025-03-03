@@ -14,6 +14,10 @@ const invoiceSchema = Schema(
                     ref: 'Product',
                     required: [true, 'Product is required']
                 },
+                productName: {
+                    type: String,
+                    required: [true, 'Name product is required']
+                },
                 quantity: {
                     type: Number,
                     required: [true, 'Quantity is required']

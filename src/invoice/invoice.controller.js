@@ -48,7 +48,7 @@ export const addInvoice = async(req, res)=>{
             const itemTotalAmount = product.price * quantity
             totalAmount += itemTotalAmount
 
-            invoiceItems.push({ product: productId, quantity, totalAmount: itemTotalAmount })
+            invoiceItems.push({ product: productId, productName: product.name, quantity, totalAmount: itemTotalAmount }) 
 
             product.stock -= quantity
             await product.save()
@@ -73,7 +73,6 @@ export const addInvoice = async(req, res)=>{
                 invoice
             }
         )
-
     }catch (err) {
         console.error(err)
         return res.status(500).send(
