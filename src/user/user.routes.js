@@ -8,7 +8,6 @@ import {
 } from "./user.controller.js"
 import { validateJwt } from "../../middlewares/validate.jwt.js"
 import { 
-    updatePasswordValidator, 
     updateUserValidator, 
     userIdValidator 
 } from "../../helpers/validator.user.js"
@@ -47,7 +46,6 @@ api.put(
     "/password/:id", 
     [
         validateJwt,
-        updatePasswordValidator
     ], 
     updatePassword
 )

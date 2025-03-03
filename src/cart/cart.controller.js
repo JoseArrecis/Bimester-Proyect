@@ -132,7 +132,7 @@ export const updateCartItem = async(req, res)=>{
             )
         }
 
-        item.quantity = quantity;
+        item.quantity = quantity
         item.totalAmount = item.quantity * (await Product.findById(productId)).price
 
         cart.totalAmount = cart.items.reduce((sum, item) => sum + item.totalAmount, 0)
