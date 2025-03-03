@@ -1,8 +1,7 @@
 import User from '../user/user.model.js'
+import Invoice from '../invoice/invoice.model.js'
 import { checkPassword, encrypt } from '../../utils/encrypt.js'
 import { generateJwt } from '../../utils/jwt.js'
-import argon2 from "argon2"
-import jwt from 'jsonwebtoken'
 
 export const register = async (req, res) => {
     try {
@@ -34,7 +33,8 @@ export const login = async(req, res)=>{
                     {username: userLoggin },
                 ]
             }
-        ) 
+        )
+
         if(user && checkPassword(user.password, password)){
             let loggedUser = { 
                 uid: user._id,
@@ -42,12 +42,16 @@ export const login = async(req, res)=>{
                 username: user.username,
                 role: user.role
             }
+            const getHistory = await Invoice.find({ user: user._id })
+                .populate("items.product", "name price quantity")
+                .exec()
             let token = await generateJwt(loggedUser)
             return res.send(
                 {
                     message: `Welcome ${user.name}`,
                     loggedUser,
-                    token
+                    token,
+                    getHistory
                 }
             )
         }

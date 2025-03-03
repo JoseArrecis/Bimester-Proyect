@@ -27,10 +27,6 @@ const cartSchema = Schema(
         totalAmount: {
             type: Number,
             required: [true, 'Total amount is required']
-        },
-        date: {
-            type: Date,
-            required: [true, 'Date is required']
         }
     }
 )

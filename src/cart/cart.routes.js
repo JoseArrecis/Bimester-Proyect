@@ -34,7 +34,7 @@ api.put(
     '/:userId',
     [
         validateJwt,
-        updateCartItemValidator,
+        //updateCartItemValidator,
         isAdmin
     ],
     updateCartItem

@@ -60,7 +60,8 @@ export const addInvoice = async(req, res)=>{
                 items: invoiceItems,
                 totalAmount,
                 date: new Date()
-            }
+            },
+            totalAmount
         )
 
         await invoice.save()
@@ -247,40 +248,6 @@ export const deleteInvoice = async(req, res)=>{
             }
         )
 
-    }catch (err) {
-        console.error(err)
-        return res.status(500).send(
-            {
-                success: false,
-                message: "General error",
-                err
-            }
-        )
-    }
-}
-
-export const getHistory = async (req, res) => {
-    try {
-        const userId = req.user.uid
-
-        const invoices = await Invoice.find({ user: userId }).populate("items.product", "name price")
-
-        if (!invoices.length) {
-            return res.status(404).send(
-                {
-                    success: false,
-                    message: "No purchase history found."
-                }
-            )
-        }
-
-        return res.status(200).send(
-            {
-                success: true,
-                message: "Purchase history retrieved successfully.",
-                invoices
-            }
-        )
     }catch (err) {
         console.error(err)
         return res.status(500).send(
