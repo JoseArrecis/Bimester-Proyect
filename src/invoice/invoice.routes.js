@@ -2,6 +2,7 @@ import { Router } from "express"
 import { 
     addInvoice, 
     deleteInvoice, 
+    getHistory, 
     getInvoiceByUser,
     getinvoiceDetails,
     updateInvoice
@@ -53,6 +54,15 @@ api.delete(
         isAdmin
     ],
     deleteInvoice
+)
+
+api.get(
+    '/:userId',
+    [
+        validateJwt,
+        isAdmin
+    ],
+    getHistory
 )
 
 export default api

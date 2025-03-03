@@ -100,7 +100,8 @@ export const getCart = async(req, res)=>{
 
 export const updateCartItem = async(req, res)=>{
     try {
-        const { userId, productId, quantity } = req.body
+        const { productId, quantity } = req.body
+        const userId = req.params.userId
 
         if (!mongoose.Types.ObjectId.isValid(userId) || !mongoose.Types.ObjectId.isValid(productId)){
             return res.status(400).send(
@@ -112,7 +113,6 @@ export const updateCartItem = async(req, res)=>{
         }
 
         const cart = await Cart.findOne({ user: userId })
-
         if(!cart){
             return res.status(404).send(
                 {

@@ -31,7 +31,7 @@ api.get(
 )
 
 api.put(
-    '/:id',
+    '/:userId',
     [
         validateJwt,
         updateCartItemValidator,
