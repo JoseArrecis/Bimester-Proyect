@@ -7,7 +7,7 @@ export const validateErrors = (req, res, next) => {
     }
     next()
 }
-
+    
 export const validateErrorWithoutImg = (req, res, next)=>{
     const errors = validationResult(req)
    

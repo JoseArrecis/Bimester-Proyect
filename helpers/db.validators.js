@@ -8,7 +8,7 @@ export const existUsername = async(username)=>{
         throw new Error(`Username ${username} is already taken`)
     }
 }
-
+    
 export const existEmail = async(email)=>{
     const alreadyEmail = await User.findOne({email})
         if(alreadyEmail){

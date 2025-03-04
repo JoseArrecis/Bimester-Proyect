@@ -11,7 +11,7 @@ export const updateUserValidator = [
     body('phone').optional().isMobilePhone(),
     validateErrors
 ]
-
+    
 export const updatePasswordValidator = [
     param('id', 'Invalid user ID')
         .notEmpty()

@@ -1,5 +1,5 @@
 import mongoose from "mongoose"
-
+    
 export const connect = async()=>{
     try{
         mongoose.connection.on('error', ()=>{

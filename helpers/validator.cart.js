@@ -14,7 +14,7 @@ export const addToCartValidator = [
         .isInt({ min: 1 }),
     validateErrors
 ]
-
+    
 export const updateCartItemValidator = [
     body('userId', 'User ID cannot be empty')
         .notEmpty()

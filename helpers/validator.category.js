@@ -20,3 +20,4 @@ export const categoryIdValidator = [
         .custom(objetctIdValid),
     validateErrors
 ]
+    

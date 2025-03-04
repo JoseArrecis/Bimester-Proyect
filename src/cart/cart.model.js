@@ -30,5 +30,5 @@ const cartSchema = Schema(
         }
     }
 )
-
+    
 export default model('Cart', cartSchema)

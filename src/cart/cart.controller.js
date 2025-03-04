@@ -15,7 +15,7 @@ export const addToCart = async (req, res) => {
         if (!product) {
             return res.status(404).send({ success: false, message: 'Product not found' })
         }
-
+        
         const totalAmount = product.price * quantity
         let cart = await Cart.findOne({ user: userId })
 
